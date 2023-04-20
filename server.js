@@ -11,7 +11,8 @@ connectDB();
 app
 	.use(express.json({ extended: false }))
 	.use("/api", require("./routes/users"))
-	.use("/api", require("./routes/auth"));
+	.use("/api", require("./routes/auth"))
+	.use("/api", require("./routes/profile"));
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Server started on ${PORT}`));
