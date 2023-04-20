@@ -9,6 +9,9 @@ const {
 	deleteProfileAndUser,
 	addExperience,
 	deleteExperience,
+	addEducation,
+	deleteEducation,
+	github,
 } = require("../controllers/profileController");
 
 const router = express.Router();
@@ -42,5 +45,19 @@ router
 router
 	.route("/profile/experience/:experienceId")
 	.delete(auth, deleteExperience);
+router
+	.route("/profile/education")
+	.put(
+		auth,
+		[
+			check("school", "School is required").not().isEmail(),
+			check("degree", "Degree is required").not().isEmpty(),
+			check("fieldOfStudy", "Field of study is required").not().isEmpty(),
+			check("from", "From date is required").not().isEmpty(),
+		],
+		addEducation
+	);
+router.route("/profile/education/:educationId").delete(auth, deleteEducation);
+router.route("/profile/github/:username").get(github);
 
 module.exports = router;
