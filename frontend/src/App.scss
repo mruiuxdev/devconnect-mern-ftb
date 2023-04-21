@@ -1,0 +1,42 @@
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&display=swap");
+@import "./FontSize";
+@import "./Colors";
+
+$theme-colors: (
+  "primary": $primary,
+  "secondary": $secondary,
+  "third": $third,
+  "success": $success,
+  "danger": $danger,
+);
+
+$btn-padding-y: size(10);
+$btn-padding-x: size(25);
+
+@import "~bootstrap/scss/bootstrap";
+
+body {
+  font-family: "Lato", sans-serif;
+  font-size: size(16);
+  min-height: 100vh;
+  color: $third;
+}
+
+.heading {
+  width: fit-content;
+  position: relative;
+  color: $secondary;
+  &::before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    bottom: size(5);
+    left: 0;
+    width: size(100);
+    height: size(10);
+    background: $primary;
+    span {
+      background: $primary;
+    }
+  }
+}
