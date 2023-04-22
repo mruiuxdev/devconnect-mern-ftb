@@ -1,0 +1,10 @@
+@import "../../FontSize";
+
+.auth {
+  padding: size(80) 0;
+  min-height: calc(100vh - size(78));
+  svg {
+    width: size(20);
+    height: size(20);
+  }
+}

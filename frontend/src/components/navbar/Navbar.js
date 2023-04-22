@@ -1,39 +1,42 @@
+import { Link } from "react-router-dom";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 
-function Menu() {
+const Menu = () => {
   return (
-    <Navbar bg="light" expand="lg" sticky="top">
+    <Navbar bg="white" expand="lg" sticky="top" className="shadow-sm">
       <Container fluid>
-        <Navbar.Brand href="#home" className="fw-bold text-primary">
-          DevConnect
+        <Navbar.Brand as="span" className="fw-bold text-primary h1 mb-0 ">
+          <Link className="text-decoration-none" to="/">
+            DevConnect
+          </Link>
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ms-auto d-flex align-items-center">
             <Nav.Link href="#home">Developers</Nav.Link>
             <Nav.Link as="span">
-              <a
-                href="/"
+              <Link
+                to="/register"
                 className="btn btn-primary text-white rounded-pill py-2"
               >
                 Register
-              </a>
+              </Link>
             </Nav.Link>
             <Nav.Link as="span">
-              <a
-                href="/"
+              <Link
+                to="/login"
                 className="btn btn-outline-secondary rounded-pill py-2"
               >
                 Login
-              </a>
+              </Link>
             </Nav.Link>
           </Nav>
         </Navbar.Collapse>
       </Container>
     </Navbar>
   );
-}
+};
 
 export default Menu;

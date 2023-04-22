@@ -1,8 +1,9 @@
+import { Link } from "react-router-dom";
 import styles from "./Header.module.scss";
 
 const { header } = styles;
 
-function Header() {
+const Header = () => {
   return (
     <header
       className={`${header} d-flex flex-column align-items-center justify-content-center`}
@@ -14,11 +15,11 @@ function Header() {
         Create A Developer Profile, Share Posts and Get Help From Other
         Developers
       </p>
-      <a href="/" className="btn btn-primary text-white rounded-pill">
+      <Link to="/register" className="btn btn-primary text-white rounded-pill">
         Get Started
-      </a>
+      </Link>
     </header>
   );
-}
+};
 
 export default Header;

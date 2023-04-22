@@ -1,4 +1,5 @@
 const express = require("express");
+const cors = require("cors");
 const dotenv = require("dotenv");
 const connectDB = require("./config/database");
 
@@ -9,11 +10,12 @@ dotenv.config({ path: "./config/.env" });
 connectDB();
 
 app
-	.use(express.json({ extended: false }))
-	.use("/api", require("./routes/users"))
-	.use("/api", require("./routes/auth"))
-	.use("/api", require("./routes/profile"))
-	.use("/api", require("./routes/posts"));
+  .use(cors())
+  .use(express.json({ extended: false }))
+  .use("/api", require("./routes/users"))
+  .use("/api", require("./routes/auth"))
+  .use("/api", require("./routes/profile"))
+  .use("/api", require("./routes/posts"));
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Server started on ${PORT}`));
