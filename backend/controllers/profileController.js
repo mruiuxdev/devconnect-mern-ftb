@@ -12,9 +12,7 @@ exports.profile = async (req, res) => {
 		]);
 
 		if (!profile)
-			return res
-				.status(400)
-				.json({ message: "There is no profile for this user" });
+			return res.status(400).json({ msg: "There is no profile for this user" });
 
 		res.status(200).json({
 			success: true,
@@ -78,7 +76,7 @@ exports.createProfile = async (req, res) => {
 
 			return res.status(200).json({
 				success: true,
-				message: "Profile is updated",
+				msg: "Profile is updated",
 				profile,
 			});
 		}
@@ -89,7 +87,7 @@ exports.createProfile = async (req, res) => {
 
 		return res.status(200).json({
 			success: true,
-			message: "Profile is created",
+			msg: "Profile is created",
 			profile,
 		});
 	} catch (err) {
@@ -120,9 +118,7 @@ exports.profileByUserId = async (req, res) => {
 		);
 
 		if (!profile)
-			return res
-				.status(400)
-				.json({ message: "There is no profile for this user" });
+			return res.status(400).json({ msg: "There is no profile for this user" });
 
 		return res.status(200).json({
 			success: true,
@@ -131,9 +127,7 @@ exports.profileByUserId = async (req, res) => {
 	} catch (err) {
 		console.error(err.message);
 		if (err.kind === "ObjectId")
-			return res
-				.status(400)
-				.json({ message: "There is no profile for this user" });
+			return res.status(400).json({ msg: "There is no profile for this user" });
 		res.status(500).send("Server Error");
 	}
 };
@@ -144,13 +138,11 @@ exports.deleteProfileAndUser = async (req, res) => {
 		const user = await User.findOneAndRemove({ _id: req.user.id });
 
 		if (!profile)
-			return res
-				.status(400)
-				.json({ message: "There is no profile for this user" });
+			return res.status(400).json({ msg: "There is no profile for this user" });
 
 		return res.status(200).json({
 			success: true,
-			message: "User is deleted",
+			msg: "User is deleted",
 		});
 	} catch (err) {
 		console.error(err.message);
@@ -185,7 +177,7 @@ exports.addExperience = async (req, res) => {
 
 		res.status(200).json({
 			success: true,
-			message: "Experience is added",
+			msg: "Experience is added",
 			profile,
 		});
 	} catch (err) {
@@ -208,7 +200,7 @@ exports.deleteExperience = async (req, res) => {
 
 		res.status(200).json({
 			success: true,
-			message: "Experience is deleted",
+			msg: "Experience is deleted",
 			profile,
 		});
 	} catch (err) {
@@ -245,7 +237,7 @@ exports.addEducation = async (req, res) => {
 
 		res.status(200).json({
 			success: true,
-			message: "Education is added",
+			msg: "Education is added",
 			profile,
 		});
 	} catch (err) {
@@ -268,7 +260,7 @@ exports.deleteEducation = async (req, res) => {
 
 		res.status(200).json({
 			success: true,
-			message: "Education is deleted",
+			msg: "Education is deleted",
 			profile,
 		});
 	} catch (err) {
@@ -289,9 +281,7 @@ exports.github = async (req, res) => {
 			if (error) console.error(error);
 
 			if (response.statusCode !== 200)
-				return res
-					.status(404)
-					.json({ success: true, message: "No github found" });
+				return res.status(404).json({ success: true, msg: "No github found" });
 
 			res.status(200).json({
 				success: true,
