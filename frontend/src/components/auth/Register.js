@@ -11,6 +11,7 @@ import Button from "react-bootstrap/Button";
 import { User } from "react-feather";
 import styles from "./Auth.module.scss";
 import { setAlert } from "../../redux/actions/alert";
+import CustomAlert from "../alert/CustomAlert";
 
 const { auth } = styles;
 
@@ -31,7 +32,7 @@ const Register = ({ setAlert }) => {
     e.preventDefault();
 
     if (password !== confirmPassword) {
-      setAlert("Passwords do not match", "danger");
+      setAlert("Passwords do not match");
     } else {
       console.log("Success");
     }
@@ -42,6 +43,7 @@ const Register = ({ setAlert }) => {
       <Container>
         <Row className="justify-content-center">
           <Col lg="6" md="8">
+            <CustomAlert />
             <Card className="shadow rounded-3 border-0">
               <Card.Body>
                 <Card.Title className="mb-3 text-primary mb-3 text-center">
@@ -124,7 +126,7 @@ Register.propTypes = {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    setAlert: (...data) => dispatch(setAlert(data)),
+    setAlert: (data) => dispatch(setAlert(data)),
   };
 };
 

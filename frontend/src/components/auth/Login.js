@@ -13,12 +13,11 @@ const { auth } = styles;
 
 const Login = () => {
   const [formData, setFormData] = useState({
-    name: "",
     email: "",
     password: "",
   });
 
-  const { name, email, password } = formData;
+  const { email, password } = formData;
 
   const onChange = (e) =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -50,10 +49,6 @@ const Login = () => {
                       required
                       onChange={(e) => onChange(e)}
                     ></Form.Control>
-                    <Form.Text>
-                      This site uses Gravatar so if you want a profile image,
-                      use gravatar email
-                    </Form.Text>
                   </Form.Group>
                   <Form.Group className="mb-3">
                     <Form.Label htmlFor="password">Password</Form.Label>
