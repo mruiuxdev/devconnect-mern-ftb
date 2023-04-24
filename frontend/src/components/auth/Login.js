@@ -35,7 +35,7 @@ const Login = ({ login, isAuthenticated }) => {
 	if (isAuthenticated) return <Navigate to="/dashboard" />;
 
 	return (
-		<div className={`${auth} d-flex align-items-center`}>
+		<div className={`${auth} section d-flex align-items-center`}>
 			<Container>
 				<Row className="justify-content-center">
 					<Col lg="6" md="8">
@@ -79,7 +79,7 @@ const Login = ({ login, isAuthenticated }) => {
 									</Button>
 									<p className="text-center mb-0">
 										Don't have an account!{" "}
-										<Link to="/register" className="text-link">
+										<Link to="/register" className="text-link d-inline-block">
 											Register
 										</Link>
 									</p>

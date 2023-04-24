@@ -42,7 +42,7 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
 	if (isAuthenticated) return <Navigate to="/dashboard" />;
 
 	return (
-		<div className={`${auth} d-flex align-items-center`}>
+		<div className={`${auth} section d-flex align-items-center`}>
 			<Container>
 				<Row className="justify-content-center">
 					<Col lg="6" md="8">
@@ -103,7 +103,7 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
 									</Button>
 									<p className="text-center mb-0">
 										Already have an account!{" "}
-										<Link to="/login" className="text-link">
+										<Link to="/login" className="text-link d-inline-block">
 											Login
 										</Link>
 									</p>

@@ -11,6 +11,7 @@ import Register from "./components/auth/Register";
 import Dashboard from "./components/dashboard/Dashboard";
 import PrivateRoute from "./components/routes/PrivateRoute";
 import "./App.scss";
+import CreateProfile from "./components/profile-form/CreateProfile";
 
 if (localStorage.token) setAuthToken(localStorage.token);
 
@@ -31,6 +32,11 @@ const App = () => {
 						exact
 						path="/dashboard"
 						element={<PrivateRoute component={Dashboard} />}
+					/>
+					<Route
+						exact
+						path="/create-profile"
+						element={<PrivateRoute component={CreateProfile} />}
 					/>
 				</Routes>
 			</Provider>

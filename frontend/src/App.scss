@@ -7,6 +7,7 @@ $theme-colors: (
 	"secondary": $secondary,
 	"third": $third,
 	"success": $success,
+	"warning": $warning,
 	"danger": $danger,
 );
 
@@ -25,12 +26,26 @@ body {
 
 a,
 button,
-span {
+span,
+.btn {
 	cursor: pointer;
+	display: flex;
+	align-items: center;
+	width: fit-content;
+	justify-content: center;
 	svg {
 		width: size(15);
 		height: size(15);
 	}
+}
+
+.section {
+	padding: size(80) 0;
+	min-height: calc(100vh - size(78));
+}
+
+.alert {
+	width: fit-content;
 }
 
 .form-control {

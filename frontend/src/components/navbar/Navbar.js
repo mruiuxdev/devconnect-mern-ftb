@@ -4,15 +4,30 @@ import { connect } from "react-redux";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
-import { LogOut } from "react-feather";
+import { Codesandbox, LogOut } from "react-feather";
 import { logout } from "../../redux/actions/auth";
 
 const Menu = ({ auth: { isAuthenticated, loading }, logout }) => {
 	const authLinks = (
-		<Nav.Link onClick={logout} as="span" className="d-flex align-items-center">
-			<LogOut className="me-2" />{" "}
-			<span className="d-md-inline-block d-none">Logout</span>
-		</Nav.Link>
+		<>
+			<Nav.Link as="span">
+				<Link
+					to="/dashboard"
+					className="btn btn-primary text-white rounded-pill py-2"
+				>
+					<Codesandbox className="me-2" />{" "}
+					<span className="d-md-inline-block d-none">Dashboard</span>
+				</Link>
+			</Nav.Link>
+			<Nav.Link
+				onClick={logout}
+				as="span"
+				className="d-flex align-items-center"
+			>
+				<LogOut className="me-2" />{" "}
+				<span className="d-md-inline-block d-none">Logout</span>
+			</Nav.Link>
+		</>
 	);
 
 	const guestLinks = (
@@ -56,7 +71,7 @@ const Menu = ({ auth: { isAuthenticated, loading }, logout }) => {
 	);
 };
 
-logout.PropTypes = {
+Menu.propTypes = {
 	logout: PropTypes.func.isRequired,
 	auth: PropTypes.object.isRequired,
 };
