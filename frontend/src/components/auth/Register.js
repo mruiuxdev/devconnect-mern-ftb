@@ -1,6 +1,6 @@
-import { useState } from "react";
 import PropTypes from "prop-types";
-import { Link } from "react-router-dom";
+import { useState } from "react";
+import { Link, Navigate } from "react-router-dom";
 import { connect } from "react-redux";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
@@ -9,14 +9,14 @@ import Card from "react-bootstrap/Card";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import { User } from "react-feather";
-import styles from "./Auth.module.scss";
 import { setAlert } from "../../redux/actions/alert";
 import { register } from "../../redux/actions/auth";
 import CustomAlert from "../alert/CustomAlert";
+import styles from "./Auth.module.scss";
 
 const { auth } = styles;
 
-const Register = ({ setAlert, register }) => {
+const Register = ({ setAlert, register, isAuthenticated }) => {
 	const [formData, setFormData] = useState({
 		name: "",
 		email: "",
@@ -38,6 +38,8 @@ const Register = ({ setAlert, register }) => {
 			register({ name, email, password });
 		}
 	};
+
+	if (isAuthenticated) return <Navigate to="/dashboard" />;
 
 	return (
 		<div className={`${auth} d-flex align-items-center`}>
@@ -118,12 +120,11 @@ const Register = ({ setAlert, register }) => {
 Register.propTypes = {
 	setAlert: PropTypes.func.isRequired,
 	register: PropTypes.func.isRequired,
+	isAuthenticated: PropTypes.bool,
 };
 
-// const mapDispatchToProps = (dispatch) => {
-//   return {
-//     setAlert: (data) => dispatch(setAlert(data)),
-//   };
-// };
+const mapStateProps = (state) => ({
+	isAuthenticated: state.auth.isAuthenticated,
+});
 
-export default connect(null, { setAlert, register })(Register);
+export default connect(mapStateProps, { setAlert, register })(Register);

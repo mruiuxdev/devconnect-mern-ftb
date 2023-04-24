@@ -17,8 +17,6 @@ CustomAlert.propTypes = {
 	alerts: PropTypes.array.isRequired,
 };
 
-const mapStateProps = (state) => ({
-	alerts: state.alert,
-});
+const mapStateProps = (state) => ({ alerts: state.alert });
 
 export default connect(mapStateProps)(CustomAlert);
