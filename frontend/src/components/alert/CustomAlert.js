@@ -2,12 +2,12 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import Alert from "react-bootstrap/Alert";
 
-const CustomAlert = ({ alerts }) =>
+const CustomAlert = ({ alerts, ...rest }) =>
 	alerts !== null &&
 	alerts.length > 0 &&
 	alerts.map((alert) => {
 		return (
-			<Alert key={alert.id} variant={alert.alertType}>
+			<Alert key={alert.id} variant={alert.alertType} {...rest}>
 				{alert.message}
 			</Alert>
 		);
