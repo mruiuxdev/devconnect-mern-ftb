@@ -2,6 +2,7 @@ const request = require("request");
 const { validationResult } = require("express-validator");
 const Profile = require("../models/profileModel");
 const User = require("../models/userModel");
+const Post = require("../models/postModel");
 
 exports.profile = async (req, res) => {
 	try {
@@ -133,6 +134,7 @@ exports.profileByUserId = async (req, res) => {
 
 exports.deleteProfileAndUser = async (req, res) => {
 	try {
+		const posts = await Post.deleteMany({ user: req.user.id });
 		const profile = await Profile.findOneAndRemove({ user: req.user.id });
 		const user = await User.findOneAndRemove({ _id: req.user.id });
 
@@ -214,8 +216,7 @@ exports.addEducation = async (req, res) => {
 	if (!errors.isEmpty())
 		return res.status(400).json({ errors: errors.array() });
 
-	const { school, degree, fieldOfStudy, from, to, current, description } =
-		req.body;
+	const { school, degree, fieldOfStudy, from, to, description } = req.body;
 
 	const newEducation = {
 		school,
@@ -223,7 +224,6 @@ exports.addEducation = async (req, res) => {
 		fieldOfStudy,
 		from,
 		to,
-		current,
 		description,
 	};
 

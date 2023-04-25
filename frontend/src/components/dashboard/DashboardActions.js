@@ -18,7 +18,7 @@ const DashboardActions = ({ className }) => {
 				<Briefcase className="me-2" /> <span>Add Experience</span>
 			</Link>
 			<Link
-				to="/edit-profile"
+				to="/add-education"
 				className={`${className} btn btn-outline-secondary py-1 px-2 rounded-pill d-flex align-items-center`}
 			>
 				<FileText className="me-2" /> <span>Add Education</span>

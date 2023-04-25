@@ -7,28 +7,25 @@ import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
-import { addExperience } from "../../redux/actions/profile";
+import { addEducation } from "../../redux/actions/profile";
 import styles from "./Profile.module.scss";
 import CustomAlert from "../alert/CustomAlert";
 
 const { profileSection } = styles;
 
-const AddExperience = ({ addExperience }) => {
+const AddEducation = ({ addEducation }) => {
 	const navigate = useNavigate();
 
 	const [formData, setFormData] = useState({
-		company: "",
-		title: "",
-		location: "",
+		school: "",
+		degree: "",
+		fieldOfStudy: "",
 		from: "",
 		to: "",
-		current: false,
 		description: "",
 	});
 
-	const [toDateDisabled, toggleDisabled] = useState(false);
-
-	const { company, title, location, from, to, current, description } = formData;
+	const { school, degree, fieldOfStudy, from, to, description } = formData;
 
 	function atLeastOneKeyHasValue(obj) {
 		for (let key in obj) {
@@ -50,7 +47,7 @@ const AddExperience = ({ addExperience }) => {
 
 		if (atLeastOneKeyHasValue(formData)) navigate("/dashboard");
 
-		addExperience(formData);
+		addEducation(formData);
 	};
 
 	return (
@@ -59,21 +56,21 @@ const AddExperience = ({ addExperience }) => {
 				<div className="heading">
 					<h1 className="fw-bolder">Add Experience</h1>
 				</div>
-				<p>Add any developer/programming positions that you had in the past</p>
+				<p>Add any school or bootcamp that you have attended</p>
 				<CustomAlert />
 				<Form onSubmit={(e) => onSubmit(e)}>
 					<Row className="align-items-center">
 						<Col lg={6}>
 							<Form.Group className="mb-3">
 								<Form.Label className="d-flex justify-content-between">
-									<span>Job Title</span>
+									<span>School</span>
 									<small className="text-danger">required field*</small>
 								</Form.Label>
 								<Form.Control
 									type="text"
 									className="form-control"
-									name="title"
-									value={title}
+									name="school"
+									value={school}
 									onChange={(e) => onChange(e)}
 								></Form.Control>
 							</Form.Group>
@@ -81,24 +78,13 @@ const AddExperience = ({ addExperience }) => {
 						<Col lg={6}>
 							<Form.Group className="mb-3">
 								<Form.Label className="d-flex justify-content-between">
-									<span>Company</span>
+									<span>Degree</span>
 									<small className="text-danger">required field*</small>
 								</Form.Label>
 								<Form.Control
 									type="text"
-									name="company"
-									value={company}
-									onChange={(e) => onChange(e)}
-								></Form.Control>
-							</Form.Group>
-						</Col>
-						<Col lg={6}>
-							<Form.Group className="mb-3">
-								<Form.Label>Location</Form.Label>
-								<Form.Control
-									type="text"
-									name="location"
-									value={location}
+									name="degree"
+									value={degree}
 									onChange={(e) => onChange(e)}
 								></Form.Control>
 							</Form.Group>
@@ -106,7 +92,21 @@ const AddExperience = ({ addExperience }) => {
 						<Col lg={6}>
 							<Form.Group className="mb-3">
 								<Form.Label className="d-flex justify-content-between">
-									<span>Form Date</span>
+									<span>Field Of Study</span>
+									<small className="text-danger">required field*</small>
+								</Form.Label>
+								<Form.Control
+									type="text"
+									name="fieldOfStudy"
+									value={fieldOfStudy}
+									onChange={(e) => onChange(e)}
+								></Form.Control>
+							</Form.Group>
+						</Col>
+						<Col lg={6}>
+							<Form.Group className="mb-3">
+								<Form.Label className="d-flex justify-content-between">
+									<span>From Date</span>
 									<small className="text-danger">required field*</small>
 								</Form.Label>
 								<Form.Control
@@ -117,23 +117,7 @@ const AddExperience = ({ addExperience }) => {
 								></Form.Control>
 							</Form.Group>
 						</Col>
-						<Col lg={6}>
-							<Form.Group className="mb-3">
-								<Form.Check
-									type="checkbox"
-									name="current"
-									label={`Current Job`}
-									value={current}
-									id="current"
-									checked={current}
-									onChange={(e) => {
-										setFormData({ ...formData, current: !current });
-										toggleDisabled(!toDateDisabled);
-									}}
-								/>
-							</Form.Group>
-						</Col>
-						<Col lg={6}>
+						<Col lg={12}>
 							<Form.Group className="mb-3">
 								<Form.Label>To Date</Form.Label>
 								<Form.Control
@@ -141,13 +125,12 @@ const AddExperience = ({ addExperience }) => {
 									name="to"
 									value={to}
 									onChange={(e) => onChange(e)}
-									disabled={toDateDisabled ? "disabled" : ""}
 								></Form.Control>
 							</Form.Group>
 						</Col>
 						<Col lg={12}>
 							<Form.Group className="mb-3">
-								<Form.Label>Job Description</Form.Label>
+								<Form.Label>Job Education</Form.Label>
 								<Form.Control
 									as="textarea"
 									rows={4}
@@ -158,7 +141,7 @@ const AddExperience = ({ addExperience }) => {
 								></Form.Control>
 							</Form.Group>
 						</Col>
-						<Col>
+						<Col lg={12}>
 							<div className="d-flex justify-content-end">
 								<Link to="/dashboard" className="btn btn-light">
 									Back
@@ -180,8 +163,8 @@ const AddExperience = ({ addExperience }) => {
 	);
 };
 
-AddExperience.propTypes = {
-	addExperience: PropTypes.func.isRequired,
+AddEducation.propTypes = {
+	addEducation: PropTypes.func.isRequired,
 };
 
-export default connect(null, { addExperience })(AddExperience);
+export default connect(null, { addEducation })(AddEducation);

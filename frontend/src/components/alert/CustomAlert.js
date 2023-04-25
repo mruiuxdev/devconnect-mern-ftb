@@ -7,7 +7,12 @@ const CustomAlert = ({ alerts, ...rest }) =>
 	alerts.length > 0 &&
 	alerts.map((alert) => {
 		return (
-			<Alert key={alert.id} variant={alert.alertType} {...rest}>
+			<Alert
+				key={alert.id}
+				variant={alert.alertType}
+				className="w-100"
+				{...rest}
+			>
 				{alert.message}
 			</Alert>
 		);

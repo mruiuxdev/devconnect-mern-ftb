@@ -79,7 +79,7 @@ const CreateProfile = ({ createUpdateProfile }) => {
 					<h1 className="fw-bolder">Create Profile</h1>
 				</div>
 				<p>Let's get some information to make your profile stands out</p>
-				<CustomAlert className="w-100" />
+				<CustomAlert />
 				<Form onSubmit={(e) => onSubmit(e)}>
 					<Row>
 						<Col lg={6}>

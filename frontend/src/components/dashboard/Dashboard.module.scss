@@ -4,4 +4,13 @@
 	.heightFitContent {
 		height: fit-content;
 	}
+	.deleteAcc {
+		position: absolute;
+		top: 0;
+		right: size(-50);
+		svg {
+			width: size(15);
+			height: size(15);
+		}
+	}
 }
