@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
@@ -8,13 +8,17 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import { connect } from "react-redux";
 import { Facebook, Instagram, Linkedin, Twitter, Youtube } from "react-feather";
-import { createUpdateProfile } from "../../redux/actions/profile";
+import { createUpdateProfile, getProfile } from "../../redux/actions/profile";
 import styles from "./Profile.module.scss";
 import CustomAlert from "../alert/CustomAlert";
 
 const { profileSection } = styles;
 
-const CreateProfile = ({ createUpdateProfile }) => {
+const EditProfile = ({
+	profile: { profile, loading },
+	createUpdateProfile,
+	getProfile,
+}) => {
 	const navigate = useNavigate();
 
 	const [formData, setFormData] = useState({
@@ -32,8 +36,6 @@ const CreateProfile = ({ createUpdateProfile }) => {
 		youtube: "",
 	});
 
-	const [displaySocialLinks, toggleSocialLinks] = useState(false);
-
 	const {
 		company,
 		website,
@@ -49,34 +51,65 @@ const CreateProfile = ({ createUpdateProfile }) => {
 		youtube,
 	} = formData;
 
+	const [displaySocialLinks, toggleSocialLinks] = useState(false);
+
+	useEffect(() => {
+		getProfile();
+
+		setFormData({
+			company:
+				loading || !profile.profile.company ? "" : profile.profile.company,
+			website:
+				loading || !profile.profile.website ? "" : profile.profile.website,
+			location:
+				loading || !profile.profile.location ? "" : profile.profile.location,
+			status: loading || !profile.profile.status ? "" : profile.profile.status,
+			skills:
+				loading || !profile.profile.skills
+					? ""
+					: profile.profile.skills.join(", "),
+			githubUsername:
+				loading || !profile.profile.githubUsername
+					? ""
+					: profile.profile.githubUsername,
+			bio: loading || !profile.profile.bio ? "" : profile.profile.bio,
+			twitter:
+				loading || !profile.profile.social
+					? ""
+					: profile.profile.social.twitter,
+			facebook:
+				loading || !profile.profile.social
+					? ""
+					: profile.profile.social.facebook,
+			instagram:
+				loading || !profile.profile.social
+					? ""
+					: profile.profile.social.instagram,
+			linkedin:
+				loading || !profile.profile.social
+					? ""
+					: profile.profile.social.linkedin,
+			youtube:
+				loading || !profile.profile.social
+					? ""
+					: profile.profile.social.youtube,
+		});
+	}, [loading]);
+
 	const onChange = (e) =>
 		setFormData({ ...formData, [e.target.name]: e.target.value });
-
-	function atLeastOneKeyHasValue(obj) {
-		for (let key in obj) {
-			if (!obj.hasOwnProperty(key)) {
-				continue;
-			}
-			if (obj[key]) {
-				return true;
-			}
-		}
-		return false;
-	}
 
 	const onSubmit = (e) => {
 		e.preventDefault();
 
-		createUpdateProfile(formData, false);
-
-		if (atLeastOneKeyHasValue(formData)) navigate("/dashboard");
+		createUpdateProfile(formData);
 	};
 
 	return (
 		<div className={`${profileSection} section`}>
 			<Container>
 				<div className="heading">
-					<h1 className="fw-bolder">Create Profile</h1>
+					<h1 className="fw-bolder">Edit Profile</h1>
 				</div>
 				<p>Let's get some information to make your profile stands out</p>
 				<CustomAlert className="w-100" />
@@ -90,7 +123,6 @@ const CreateProfile = ({ createUpdateProfile }) => {
 								</Form.Label>
 								<Form.Select
 									className="form-control"
-									as="select"
 									name="status"
 									value={status}
 									onChange={(e) => onChange(e)}
@@ -273,7 +305,7 @@ const CreateProfile = ({ createUpdateProfile }) => {
 									type="submit"
 									className="text-white rounded-pill ms-3"
 								>
-									Create
+									Update
 								</Button>
 							</div>
 						</Col>
@@ -284,6 +316,16 @@ const CreateProfile = ({ createUpdateProfile }) => {
 	);
 };
 
-CreateProfile.propTypes = { createUpdateProfile: PropTypes.func.isRequired };
+EditProfile.propTypes = {
+	createUpdateProfile: PropTypes.func.isRequired,
+	getProfile: PropTypes.func.isRequired,
+	profile: PropTypes.object.isRequired,
+};
 
-export default connect(null, { createUpdateProfile })(CreateProfile);
+const mapStateToProps = (state) => ({
+	profile: state.profile,
+});
+
+export default connect(mapStateToProps, { createUpdateProfile, getProfile })(
+	EditProfile
+);

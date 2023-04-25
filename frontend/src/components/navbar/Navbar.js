@@ -15,8 +15,7 @@ const Menu = ({ auth: { isAuthenticated, loading }, logout }) => {
 					to="/dashboard"
 					className="btn btn-primary text-white rounded-pill py-2"
 				>
-					<Codesandbox className="me-2" />{" "}
-					<span className="d-md-inline-block d-none">Dashboard</span>
+					<Codesandbox className="me-2" /> Dashboard
 				</Link>
 			</Nav.Link>
 			<Nav.Link
@@ -24,8 +23,7 @@ const Menu = ({ auth: { isAuthenticated, loading }, logout }) => {
 				as="span"
 				className="d-flex align-items-center"
 			>
-				<LogOut className="me-2" />{" "}
-				<span className="d-md-inline-block d-none">Logout</span>
+				<LogOut className="me-2" /> Logout
 			</Nav.Link>
 		</>
 	);
@@ -53,7 +51,7 @@ const Menu = ({ auth: { isAuthenticated, loading }, logout }) => {
 	);
 
 	return (
-		<Navbar bg="white" expand="lg" sticky="top" className="shadow-sm">
+		<Navbar bg="white" expand="md" sticky="top" className="shadow-sm">
 			<Container fluid>
 				<Navbar.Brand as="span" className="fw-bold text-primary h1 mb-0 ">
 					<Link className="text-decoration-none" to="/">
