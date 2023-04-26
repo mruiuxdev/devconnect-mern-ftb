@@ -28,7 +28,6 @@ a,
 button,
 span,
 .btn {
-	cursor: pointer;
 	display: flex;
 	align-items: center;
 	width: fit-content;
@@ -36,6 +35,12 @@ span,
 	svg {
 		width: size(15);
 		height: size(15);
+	}
+}
+
+.btn-outline-primary {
+	&:hover {
+		color: #fff !important;
 	}
 }
 

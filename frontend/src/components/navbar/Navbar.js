@@ -1,13 +1,15 @@
 import PropTypes from "prop-types";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { connect } from "react-redux";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
-import { Codesandbox, LogOut } from "react-feather";
+import { Code, Codesandbox, LogOut } from "react-feather";
 import { logout } from "../../redux/actions/auth";
 
 const Menu = ({ auth: { isAuthenticated, loading }, logout }) => {
+	const navigate = useNavigate();
+
 	const authLinks = (
 		<>
 			<Nav.Link as="span">
@@ -18,8 +20,16 @@ const Menu = ({ auth: { isAuthenticated, loading }, logout }) => {
 					<Codesandbox className="me-2" /> Dashboard
 				</Link>
 			</Nav.Link>
+			<Nav.Link as="span">
+				<Link to="/profiles" className="text-third text-decoration-none">
+					<Code className="me-2" /> Developers
+				</Link>
+			</Nav.Link>
 			<Nav.Link
-				onClick={logout}
+				onClick={() => {
+					logout();
+					navigate("/login");
+				}}
 				as="span"
 				className="d-flex align-items-center"
 			>
@@ -30,7 +40,11 @@ const Menu = ({ auth: { isAuthenticated, loading }, logout }) => {
 
 	const guestLinks = (
 		<>
-			<Nav.Link href="#home">Developers</Nav.Link>
+			<Nav.Link as="span">
+				<Link to="/profiles" className="text-third text-decoration-none">
+					<Code className="me-2" /> Developers
+				</Link>
+			</Nav.Link>
 			<Nav.Link as="span">
 				<Link
 					to="/register"

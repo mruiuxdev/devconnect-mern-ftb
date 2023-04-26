@@ -18,7 +18,13 @@ const Education = ({ education, deleteEducation }) => {
 			<td>
 				<Moment format="YYYY/MM/DD">{edu.to}</Moment>
 			</td>
-			<td>{edu.description}</td>
+			{edu.description ? (
+				<td title={edu.description}>
+					{edu.description.substring(0, 100) + "..."}
+				</td>
+			) : (
+				<td></td>
+			)}
 			<td>
 				<Button
 					className="btn btn-danger p-2"
@@ -54,7 +60,7 @@ const Education = ({ education, deleteEducation }) => {
 };
 
 Education.propTypes = {
-	education: PropTypes.array.isRequired,
+	experience: PropTypes.array.isRequired,
 	deleteEducation: PropTypes.func.isRequired,
 };
 

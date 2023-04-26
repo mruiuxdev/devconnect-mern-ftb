@@ -7,7 +7,6 @@ import Alert from "react-bootstrap/Alert";
 import { Link } from "react-router-dom";
 import { getProfile, deleteAccount } from "../../redux/actions/profile";
 import { GitHub, Mail, Trash, UserCheck } from "react-feather";
-import Shimmer from "../shimmer/Shimmer";
 import DashboardActions from "./DashboardActions";
 import CustomAlert from "../alert/CustomAlert";
 import Experience from "./Experience";
@@ -24,7 +23,7 @@ const Dashboard = ({
 }) => {
 	useEffect(() => {
 		getProfile();
-	}, []);
+	}, [getProfile]);
 
 	return (
 		<div className={`${dashboard} section`}>
@@ -33,7 +32,7 @@ const Dashboard = ({
 				<div className="heading">
 					<h1 className="fw-bolder">Dashboard</h1>
 				</div>
-				<div className="d-flex justify-content-between">
+				<div className="d-flex flex-wrap justify-content-between">
 					{user && user.user && (
 						<div className="d-flex text-secondary">
 							<UserCheck className="me-2" />
@@ -66,13 +65,13 @@ const Dashboard = ({
 												className="btn-link text-secondary d-flex align-items-center"
 												target="_blank"
 											>
-												<GitHub className="me-2" />{" "}
+												<GitHub className="me-2" />
 												{profile.profile.githubUsername}
 											</Link>
 										</i>
 									</small>
 								)}
-								{profile === null && (
+								{profile === null && loading && (
 									<Link
 										to="/create-profile"
 										className="text-decoration-none mt-3"
@@ -91,7 +90,7 @@ const Dashboard = ({
 						</div>
 					)}
 					{profile !== null && (
-						<DashboardActions className={heightFitContent} />
+						<DashboardActions className={`${heightFitContent} mt-md-0 mt-3`} />
 					)}
 				</div>
 				{profile !== null &&

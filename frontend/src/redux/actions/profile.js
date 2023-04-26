@@ -5,6 +5,8 @@ import {
 	GET_PROFILE,
 	PROFILE_ERROR,
 	UPDATE_PROFILE,
+	GET_PROFILES,
+	GET_REPOS,
 } from "./types";
 import { setAlert } from "./alert";
 
@@ -14,6 +16,62 @@ export const getProfile = () => async (dispatch) => {
 
 		dispatch({
 			type: GET_PROFILE,
+			payload: res.data,
+		});
+	} catch (err) {
+		dispatch({ type: CLEAR_PROFILE });
+
+		dispatch({
+			type: PROFILE_ERROR,
+			payload: { msg: err.response.statusText, status: err.response.status },
+		});
+	}
+};
+
+export const getProfileByUserId = (userId) => async (dispatch) => {
+	try {
+		const res = await axios.get(
+			`${process.env.REACT_APP_API_URL}/profile/${userId}`
+		);
+
+		dispatch({
+			type: GET_PROFILE,
+			payload: res.data,
+		});
+	} catch (err) {
+		dispatch({
+			type: PROFILE_ERROR,
+			payload: { msg: err.response.statusText, status: err.response.status },
+		});
+	}
+};
+
+export const githubRepos = (username) => async (dispatch) => {
+	try {
+		const res = await axios.get(
+			`${process.env.REACT_APP_API_URL}/profile/github/${username}`
+		);
+
+		dispatch({
+			type: GET_REPOS,
+			payload: res.data,
+		});
+	} catch (err) {
+		dispatch({
+			type: PROFILE_ERROR,
+			payload: { msg: err.response.statusText, status: err.response.status },
+		});
+	}
+};
+
+export const allProfiles = () => async (dispatch) => {
+	dispatch({ type: CLEAR_PROFILE });
+
+	try {
+		const res = await axios.get(`${process.env.REACT_APP_API_URL}/profiles`);
+
+		dispatch({
+			type: GET_PROFILES,
 			payload: res.data,
 		});
 	} catch (err) {
@@ -159,9 +217,7 @@ export const deleteEducation = (id) => async (dispatch) => {
 export const deleteAccount = () => async (dispatch) => {
 	if (window.confirm("Are you sure? This can not undo!"))
 		try {
-			const res = await axios.delete(
-				`${process.env.REACT_APP_API_URL}/profile`
-			);
+			await axios.delete(`${process.env.REACT_APP_API_URL}/profile`);
 
 			dispatch({ type: CLEAR_PROFILE });
 

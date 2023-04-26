@@ -7,11 +7,11 @@ import { connect } from "react-redux";
 import { deleteExperience } from "../../redux/actions/profile";
 
 const Experience = ({ experience, deleteExperience }) => {
-	const experiences = experience.map((exp, i) => (
+	const experiences = experience.map((exp) => (
 		<tr key={exp._id}>
 			<td>{exp.company}</td>
 			<td>{exp.title}</td>
-			<td>{exp.location}</td>
+			{exp.location ? <td>{exp.location}</td> : <td></td>}
 			<td>
 				<Moment format="YYYY/MM/DD">{exp.form}</Moment>
 			</td>
@@ -22,7 +22,13 @@ const Experience = ({ experience, deleteExperience }) => {
 					"For Now"
 				)}
 			</td>
-			<td>{exp.description}</td>
+			{exp.description ? (
+				<td title={exp.description}>
+					{exp.description.substring(0, 100) + "..."}
+				</td>
+			) : (
+				<td></td>
+			)}
 			<td>
 				<Button
 					className="btn btn-danger p-2"

@@ -69,7 +69,8 @@ const CreateProfile = ({ createUpdateProfile }) => {
 
 		createUpdateProfile(formData, false);
 
-		if (atLeastOneKeyHasValue(formData)) navigate("/dashboard");
+		if (atLeastOneKeyHasValue(formData) && formData.status && formData.skills)
+			navigate("/dashboard");
 	};
 
 	return (
@@ -85,7 +86,7 @@ const CreateProfile = ({ createUpdateProfile }) => {
 						<Col lg={6}>
 							<Form.Group className="mb-3">
 								<Form.Label className="d-flex justify-content-between">
-									<span>Professional Status</span>{" "}
+									<span>Professional Status</span>
 									<small className="text-danger">required field*</small>
 								</Form.Label>
 								<Form.Select
@@ -238,7 +239,7 @@ const CreateProfile = ({ createUpdateProfile }) => {
 										</Form.Group>
 										<Form.Group className="mb-2">
 											<Form.Label className="d-flex align-items-center">
-												<Instagram className="me-2" />{" "}
+												<Instagram className="me-2" />
 												<span>Instagram URL</span>
 											</Form.Label>
 											<Form.Control

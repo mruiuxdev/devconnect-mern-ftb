@@ -78,7 +78,7 @@ const Login = ({ login, isAuthenticated }) => {
 										Login
 									</Button>
 									<p className="text-center mb-0">
-										Don't have an account!{" "}
+										Don't have an account!
 										<Link to="/register" className="text-link d-inline-block">
 											Register
 										</Link>

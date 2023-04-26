@@ -45,7 +45,16 @@ const AddEducation = ({ addEducation }) => {
 	const onSubmit = (e) => {
 		e.preventDefault();
 
-		if (atLeastOneKeyHasValue(formData)) navigate("/dashboard");
+		const { school, degree, fieldOfStudy, from } = formData;
+
+		if (
+			atLeastOneKeyHasValue(formData) &&
+			school &&
+			degree &&
+			fieldOfStudy &&
+			from
+		)
+			navigate("/dashboard");
 
 		addEducation(formData);
 	};

@@ -102,7 +102,7 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
 										Register
 									</Button>
 									<p className="text-center mb-0">
-										Already have an account!{" "}
+										Already have an account!
 										<Link to="/login" className="text-link d-inline-block">
 											Login
 										</Link>

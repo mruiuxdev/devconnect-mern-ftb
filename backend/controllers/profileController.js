@@ -98,7 +98,11 @@ exports.createProfile = async (req, res) => {
 
 exports.allProfiles = async (req, res) => {
 	try {
-		const profiles = await Profile.find().populate("user", ["name", "avatar"]);
+		const profiles = await Profile.find().populate("user", [
+			"name",
+			"avatar",
+			"email",
+		]);
 
 		return res.status(200).json({
 			success: true,
@@ -114,7 +118,7 @@ exports.profileByUserId = async (req, res) => {
 	try {
 		const profile = await Profile.findOne({ user: req.params.userId }).populate(
 			"user",
-			["name", "avatar"]
+			["name", "avatar", "email"]
 		);
 
 		if (!profile)

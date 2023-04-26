@@ -1,0 +1,13 @@
+@import "../../FontSize";
+
+.profilePage {
+	.btnEdit {
+		position: absolute;
+		top: size(30);
+		right: size(30);
+	}
+	svg {
+		width: size(15);
+		height: size(15);
+	}
+}

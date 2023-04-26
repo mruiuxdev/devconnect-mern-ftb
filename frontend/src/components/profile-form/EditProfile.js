@@ -94,7 +94,7 @@ const EditProfile = ({
 					? ""
 					: profile.profile.social.youtube,
 		});
-	}, [loading]);
+	}, [loading, getProfile]);
 
 	const onChange = (e) =>
 		setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -102,7 +102,7 @@ const EditProfile = ({
 	const onSubmit = (e) => {
 		e.preventDefault();
 
-		createUpdateProfile(formData);
+		createUpdateProfile(formData, true);
 	};
 
 	return (
@@ -118,7 +118,7 @@ const EditProfile = ({
 						<Col lg={6}>
 							<Form.Group className="mb-3">
 								<Form.Label className="d-flex justify-content-between">
-									<span>Professional Status</span>{" "}
+									<span>Professional Status</span>
 									<small className="text-danger">required field*</small>
 								</Form.Label>
 								<Form.Select
@@ -270,7 +270,7 @@ const EditProfile = ({
 										</Form.Group>
 										<Form.Group className="mb-2">
 											<Form.Label className="d-flex align-items-center">
-												<Instagram className="me-2" />{" "}
+												<Instagram className="me-2" />
 												<span>Instagram URL</span>
 											</Form.Label>
 											<Form.Control
@@ -297,9 +297,9 @@ const EditProfile = ({
 						</Col>
 						<Col>
 							<div className="d-flex justify-content-end">
-								<Link to="/dashboard" className="btn btn-light">
+								<span onClick={() => navigate(-1)} className="btn btn-light">
 									Back
-								</Link>
+								</span>
 								<Button
 									variant="primary"
 									type="submit"

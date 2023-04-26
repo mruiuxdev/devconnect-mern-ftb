@@ -78,10 +78,6 @@ const profileSchema = new mongoose.Schema({
 			to: {
 				type: Date,
 			},
-			current: {
-				type: Boolean,
-				default: false,
-			},
 			description: {
 				type: String,
 			},
