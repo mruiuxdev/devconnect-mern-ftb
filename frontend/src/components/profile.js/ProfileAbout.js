@@ -11,7 +11,10 @@ const ProfileAbout = ({ profile }) => {
 							<h5 className="fw-bold mb-4 text-primary">Skills</h5>
 							<div className="d-flex flex-wrap mb-2">
 								{profile.profile.skills.map((skill, i) => (
-									<span className="bg-secondary px-2 text-white rounded-pill me-1 mb-1">
+									<span
+										key={i}
+										className="bg-secondary px-2 text-white rounded-pill me-1 mb-1"
+									>
 										{skill}
 									</span>
 								))}

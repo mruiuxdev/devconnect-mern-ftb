@@ -11,6 +11,7 @@ import styles from "./Profile.module.scss";
 import ProfileAbout from "./ProfileAbout";
 import ProfileExperience from "./ProfileExperience";
 import ProfileEducation from "./ProfileEducation";
+import ProfileGithub from "./ProfileGithub";
 
 const { profilePage, btnEdit } = styles;
 
