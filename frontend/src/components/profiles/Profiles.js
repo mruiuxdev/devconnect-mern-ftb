@@ -10,13 +10,7 @@ import { allProfiles } from "../../redux/actions/profile";
 import Shimmer from "../shimmer/Shimmer";
 import ProfileItem from "./ProfileItem";
 
-const Profiles = ({
-	allProfiles,
-	profile: {
-		profiles: { profiles },
-		loading,
-	},
-}) => {
+const Profiles = ({ allProfiles, profile: { profiles, loading } }) => {
 	useEffect(() => {
 		allProfiles();
 	}, [allProfiles]);
@@ -50,7 +44,9 @@ const Profiles = ({
 								))}
 							</Row>
 						) : (
-							<Alert className="alert alert-info">No profiles added</Alert>
+							<Alert className="alert alert-info w-100">
+								No profiles added
+							</Alert>
 						)}
 					</>
 				)}
@@ -64,6 +60,6 @@ Profiles.propTypes = {
 	profile: PropTypes.object.isRequired,
 };
 
-const mapStateToProps = (state) => ({ profile: state.profile });
+const mapStateToProps = (state) => ({ profile: state.data });
 
 export default connect(mapStateToProps, { allProfiles })(Profiles);

@@ -33,7 +33,7 @@ const Dashboard = ({
 					<h1 className="fw-bolder">Dashboard</h1>
 				</div>
 				<div className="d-flex flex-wrap justify-content-between">
-					{user && user.user && (
+					{user && (
 						<div className="d-flex text-secondary">
 							<UserCheck className="me-2" />
 							<div className="position-relative">
@@ -43,30 +43,28 @@ const Dashboard = ({
 								>
 									<Trash />
 								</Button>
-								{user.user.name}
+								{user.name}
 								<br />
 								<small>
 									<i>
 										<span
 											className="btn-link text-secondary d-flex align-items-center"
-											onClick={() =>
-												(window.location = `mailto:${user.user.email}`)
-											}
+											onClick={() => (window.location = `mailto:${user.email}`)}
 										>
-											<Mail className="me-2" /> {user.user.email}
+											<Mail className="me-2" /> {user.email}
 										</span>
 									</i>
 								</small>
-								{profile !== null && profile.profile.githubUsername && (
+								{profile !== null && profile.githubUsername && (
 									<small>
 										<i>
 											<Link
-												to={`https://github.com/${profile.profile.githubUsername}`}
+												to={`https://github.com/${profile.githubUsername}`}
 												className="btn-link text-secondary d-flex align-items-center"
 												target="_blank"
 											>
 												<GitHub className="me-2" />
-												{profile.profile.githubUsername}
+												{profile.githubUsername}
 											</Link>
 										</i>
 									</small>
@@ -93,20 +91,16 @@ const Dashboard = ({
 						<DashboardActions className={`${heightFitContent} mt-md-0 mt-3`} />
 					)}
 				</div>
-				{profile !== null &&
-					profile.profile.experience !== null &&
-					profile.profile.experience.length > 0 && (
-						<div className="mt-4">
-							<Experience experience={profile.profile.experience} />
-						</div>
-					)}
-				{profile !== null &&
-					profile.profile.education !== null &&
-					profile.profile.education.length > 0 && (
-						<div className="mt-4">
-							<Education education={profile.profile.education} />
-						</div>
-					)}
+				{profile !== null && profile.experience && (
+					<div className="mt-4">
+						<Experience experience={profile.experience} />
+					</div>
+				)}
+				{profile !== null && profile.education && (
+					<div className="mt-4">
+						<Education education={profile.education} />
+					</div>
+				)}
 			</Container>
 		</div>
 	);
@@ -121,7 +115,7 @@ Dashboard.propTypes = {
 
 const mapStateToProps = (state) => ({
 	auth: state.auth,
-	profile: state.profile,
+	profile: state.data,
 });
 
 export default connect(mapStateToProps, { getProfile, deleteAccount })(

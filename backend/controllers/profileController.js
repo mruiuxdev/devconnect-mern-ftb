@@ -6,10 +6,9 @@ const Post = require("../models/postModel");
 
 exports.profile = async (req, res) => {
 	try {
-		const profile = await Profile.findOne({ user: req.user.id }).populate(
-			"user",
-			["name", "avatar"]
-		);
+		const profile = await Profile.findOne({ user: req.user.id })
+			.populate("user", ["name", "avatar"])
+			.select("-__v");
 
 		if (!profile)
 			return res.status(400).json({ msg: "There is no profile for this user" });
@@ -116,10 +115,9 @@ exports.allProfiles = async (req, res) => {
 
 exports.profileByUserId = async (req, res) => {
 	try {
-		const profile = await Profile.findOne({ user: req.params.userId }).populate(
-			"user",
-			["name", "avatar", "email"]
-		);
+		const profile = await Profile.findOne({ user: req.params.userId })
+			.populate("user", ["name", "avatar", "email"])
+			.select("-__v");
 
 		if (!profile)
 			return res.status(400).json({ msg: "There is no profile for this user" });
@@ -138,9 +136,9 @@ exports.profileByUserId = async (req, res) => {
 
 exports.deleteProfileAndUser = async (req, res) => {
 	try {
-		const posts = await Post.deleteMany({ user: req.user.id });
+		await Post.deleteMany({ user: req.user.id });
 		const profile = await Profile.findOneAndRemove({ user: req.user.id });
-		const user = await User.findOneAndRemove({ _id: req.user.id });
+		await User.findOneAndRemove({ _id: req.user.id });
 
 		if (!profile)
 			return res.status(400).json({ msg: "There is no profile for this user" });

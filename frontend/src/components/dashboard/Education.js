@@ -38,23 +38,27 @@ const Education = ({ education, deleteEducation }) => {
 
 	return (
 		<>
-			<div className="heading mb-2">
-				<h4>Educations</h4>
-			</div>
-			<Table striped bordered responsive>
-				<thead>
-					<tr>
-						<th>School</th>
-						<th>Degree</th>
-						<th>Field Of Study</th>
-						<th>Date From</th>
-						<th>Date To</th>
-						<th>Description</th>
-						<th>Action</th>
-					</tr>
-				</thead>
-				<tbody>{educations}</tbody>
-			</Table>
+			{education.length > 0 && (
+				<>
+					<div className="heading mb-2">
+						<h4>Educations</h4>
+					</div>
+					<Table striped bordered responsive>
+						<thead>
+							<tr>
+								<th>School</th>
+								<th>Degree</th>
+								<th>Field Of Study</th>
+								<th>Date From</th>
+								<th>Date To</th>
+								<th>Description</th>
+								<th>Action</th>
+							</tr>
+						</thead>
+						<tbody>{educations}</tbody>
+					</Table>
+				</>
+			)}
 		</>
 	);
 };

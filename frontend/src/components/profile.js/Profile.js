@@ -35,20 +35,19 @@ const Profile = ({
 					<>
 						<div className="position-relative p-4 rounded shadow">
 							<ProfileTop profile={profile} />
-							{auth.isAuthenticated &&
-								!auth.loading &&
-								auth.user.user._id === profile.profile.user._id && (
-									<Link
-										to="/edit-profile"
-										className={`${btnEdit} ms-3 btn btn-warning rounded-pill text-white p-2`}
-									>
-										<Edit />
-									</Link>
-								)}
+							{auth.user._id === profile.user._id && (
+								<Link
+									to="/edit-profile"
+									className={`${btnEdit} ms-3 btn btn-warning rounded-pill text-white p-2`}
+								>
+									<Edit />
+								</Link>
+							)}
 						</div>
 						<ProfileAbout profile={profile} />
 						<ProfileExperience experience={profile} />
 						<ProfileEducation education={profile} />
+						<ProfileGithub username={profile.githubUsername} />
 					</>
 				)}
 			</Container>
@@ -63,7 +62,7 @@ Profile.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
-	profile: state.profile,
+	profile: state.data,
 	auth: state.auth,
 });
 

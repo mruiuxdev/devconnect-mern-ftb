@@ -47,23 +47,15 @@ const AddEducation = ({ addEducation }) => {
 
 		const { school, degree, fieldOfStudy, from } = formData;
 
-		if (
-			atLeastOneKeyHasValue(formData) &&
-			school &&
-			degree &&
-			fieldOfStudy &&
-			from
-		)
-			navigate("/dashboard");
-
-		addEducation(formData);
+		if (school && degree && fieldOfStudy && from)
+			addEducation(formData).then(() => navigate("/dashboard"));
 	};
 
 	return (
 		<div className={`${profileSection} section`}>
 			<Container>
 				<div className="heading">
-					<h1 className="fw-bolder">Add Experience</h1>
+					<h1 className="fw-bolder">Add Education</h1>
 				</div>
 				<p>Add any school or bootcamp that you have attended</p>
 				<CustomAlert />

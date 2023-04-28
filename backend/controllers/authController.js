@@ -5,7 +5,9 @@ const User = require("../models/userModel.js");
 
 exports.userByToken = async (req, res) => {
 	try {
-		const user = await User.findById(req.user.id).select("-password");
+		const user = await User.findById(req.user.id)
+			.select("-password")
+			.select("-__v");
 
 		res.json({ user });
 	} catch (err) {

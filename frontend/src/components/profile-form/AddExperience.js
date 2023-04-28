@@ -48,15 +48,8 @@ const AddExperience = ({ addExperience }) => {
 	const onSubmit = (e) => {
 		e.preventDefault();
 
-		if (
-			atLeastOneKeyHasValue(formData) &&
-			formData.company &&
-			formData.title &&
-			formData.from
-		)
-			navigate("/dashboard");
-
-		addExperience(formData);
+		if (formData.company && formData.title && formData.from)
+			addExperience(formData).then(() => navigate("/dashboard"));
 	};
 
 	return (

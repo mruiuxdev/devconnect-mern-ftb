@@ -1,26 +1,22 @@
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
+import { githubRepos } from "../../redux/actions/profile";
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
-import { githubRepos } from "../../redux/actions/profile";
-import Shimmer from "../shimmer/Shimmer";
 
-const ProfileGithub = ({ githubRepos, username, repos }) => {
-	console.log(username.profile.githubUsername);
-	console.log(repos.github);
+const ProfileGithub = ({ username, githubRepos, repos }) => {
 	useEffect(() => {
-		githubRepos(username.profile.githubUsername);
-	}, [githubRepos, username.profile.githubUsername]);
+		githubRepos(username);
+	}, [githubRepos, username]);
 
 	return (
 		<>
-			{repos.github === null || repos.github === undefined ? (
-				<Shimmer />
-			) : (
+			{repos && repos.length > 0 && (
 				<div className="p-4 rounded shadow mt-4">
-					<h5 className="fw-bold mb-2 text-primary">Github Repos</h5>
-					{repos.github.map((repo) => (
+					<h5 className="fw-bold mb-4 text-primary">Github Repos</h5>
+					{repos.map((repo) => (
 						<Link
+							key={repo.id}
 							to={repo.html_url}
 							target="_blank"
 							className="mb-2 border rounded p-2 w-100 text-decoration-none justify-content-start"
@@ -35,13 +31,11 @@ const ProfileGithub = ({ githubRepos, username, repos }) => {
 };
 
 ProfileGithub.propTypes = {
+	username: PropTypes.string.isRequired,
 	githubRepos: PropTypes.func.isRequired,
 	repos: PropTypes.array.isRequired,
-	username: PropTypes.object.isRequired,
 };
 
-const mapStateToProps = (state) => ({
-	repos: state.profile.repos,
-});
+const mapStateToProps = (state) => ({ repos: state.data.repos.github });
 
 export default connect(mapStateToProps, { githubRepos })(ProfileGithub);

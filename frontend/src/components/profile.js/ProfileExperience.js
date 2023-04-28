@@ -5,10 +5,10 @@ import { Calendar, Code, Codesandbox, MapPin } from "react-feather";
 const ProfileExperience = ({ experience }) => {
 	return (
 		<>
-			{experience.profile.experience.length > 0 && (
+			{experience.experience.length > 0 && (
 				<div className="p-4 rounded shadow mt-4">
 					<h5 className="fw-bold mb-2 text-primary">Experiences</h5>
-					{experience.profile.experience.map((exp) => (
+					{experience.experience.map((exp) => (
 						<div className="py-2 border-bottom" key={exp._id}>
 							<div className="fw-bold d-flex align-items-center mb-2">
 								<Code className="me-2" /> <span>Title: {exp.title}</span>

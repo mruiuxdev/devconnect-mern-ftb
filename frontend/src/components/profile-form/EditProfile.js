@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 import { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
@@ -57,42 +57,19 @@ const EditProfile = ({
 		getProfile();
 
 		setFormData({
-			company:
-				loading || !profile.profile.company ? "" : profile.profile.company,
-			website:
-				loading || !profile.profile.website ? "" : profile.profile.website,
-			location:
-				loading || !profile.profile.location ? "" : profile.profile.location,
-			status: loading || !profile.profile.status ? "" : profile.profile.status,
-			skills:
-				loading || !profile.profile.skills
-					? ""
-					: profile.profile.skills.join(", "),
+			company: loading || !profile.company ? "" : profile.company,
+			website: loading || !profile.website ? "" : profile.website,
+			location: loading || !profile.location ? "" : profile.location,
+			status: loading || !profile.status ? "" : profile.status,
+			skills: loading || !profile.skills ? "" : profile.skills.join(", "),
 			githubUsername:
-				loading || !profile.profile.githubUsername
-					? ""
-					: profile.profile.githubUsername,
-			bio: loading || !profile.profile.bio ? "" : profile.profile.bio,
-			twitter:
-				loading || !profile.profile.social
-					? ""
-					: profile.profile.social.twitter,
-			facebook:
-				loading || !profile.profile.social
-					? ""
-					: profile.profile.social.facebook,
-			instagram:
-				loading || !profile.profile.social
-					? ""
-					: profile.profile.social.instagram,
-			linkedin:
-				loading || !profile.profile.social
-					? ""
-					: profile.profile.social.linkedin,
-			youtube:
-				loading || !profile.profile.social
-					? ""
-					: profile.profile.social.youtube,
+				loading || !profile.githubUsername ? "" : profile.githubUsername,
+			bio: loading || !profile.bio ? "" : profile.bio,
+			twitter: loading || !profile.social ? "" : profile.social.twitter,
+			facebook: loading || !profile.social ? "" : profile.social.facebook,
+			instagram: loading || !profile.social ? "" : profile.social.instagram,
+			linkedin: loading || !profile.social ? "" : profile.social.linkedin,
+			youtube: loading || !profile.social ? "" : profile.social.youtube,
 		});
 	}, [loading, getProfile]);
 
@@ -297,7 +274,10 @@ const EditProfile = ({
 						</Col>
 						<Col>
 							<div className="d-flex justify-content-end">
-								<span onClick={() => navigate(-1)} className="btn btn-light">
+								<span
+									onClick={() => navigate("/dashboard")}
+									className="btn btn-light"
+								>
 									Back
 								</span>
 								<Button
@@ -323,7 +303,7 @@ EditProfile.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
-	profile: state.profile,
+	profile: state.data,
 });
 
 export default connect(mapStateToProps, { createUpdateProfile, getProfile })(

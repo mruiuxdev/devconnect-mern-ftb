@@ -5,10 +5,10 @@ import { Award, Calendar, FileText, MapPin } from "react-feather";
 const ProfileEducation = ({ education }) => {
 	return (
 		<>
-			{education.profile.education.length > 0 && (
+			{education.education.length > 0 && (
 				<div className="p-4 rounded shadow mt-4">
 					<h5 className="fw-bold mb-2 text-primary">Educations</h5>
-					{education.profile.education.map((edu) => (
+					{education.education.map((edu) => (
 						<div className="py-2 border-bottom" key={edu._id}>
 							<div className="fw-bold d-flex align-items-center mb-2">
 								<FileText className="me-2" /> <span>Title: {edu.school}</span>

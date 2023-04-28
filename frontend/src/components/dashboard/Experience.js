@@ -42,23 +42,27 @@ const Experience = ({ experience, deleteExperience }) => {
 
 	return (
 		<>
-			<div className="heading mb-2">
-				<h4>Experiences</h4>
-			</div>
-			<Table striped bordered responsive>
-				<thead>
-					<tr>
-						<th>Company</th>
-						<th>Title</th>
-						<th>Location</th>
-						<th>Date From</th>
-						<th>Date To</th>
-						<th>Description</th>
-						<th>Action</th>
-					</tr>
-				</thead>
-				<tbody>{experiences}</tbody>
-			</Table>
+			{experience.length > 0 && (
+				<>
+					<div className="heading mb-2">
+						<h4>Experiences</h4>
+					</div>
+					<Table striped bordered responsive>
+						<thead>
+							<tr>
+								<th>Company</th>
+								<th>Title</th>
+								<th>Location</th>
+								<th>Date From</th>
+								<th>Date To</th>
+								<th>Description</th>
+								<th>Action</th>
+							</tr>
+						</thead>
+						<tbody>{experiences}</tbody>
+					</Table>
+				</>
+			)}
 		</>
 	);
 };

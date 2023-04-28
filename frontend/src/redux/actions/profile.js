@@ -7,6 +7,7 @@ import {
 	UPDATE_PROFILE,
 	GET_PROFILES,
 	GET_REPOS,
+	NO_REPOS,
 } from "./types";
 import { setAlert } from "./alert";
 
@@ -16,7 +17,7 @@ export const getProfile = () => async (dispatch) => {
 
 		dispatch({
 			type: GET_PROFILE,
-			payload: res.data,
+			payload: res.data.profile,
 		});
 	} catch (err) {
 		dispatch({ type: CLEAR_PROFILE });
@@ -36,7 +37,7 @@ export const getProfileByUserId = (userId) => async (dispatch) => {
 
 		dispatch({
 			type: GET_PROFILE,
-			payload: res.data,
+			payload: res.data.profile,
 		});
 	} catch (err) {
 		dispatch({
@@ -58,8 +59,7 @@ export const githubRepos = (username) => async (dispatch) => {
 		});
 	} catch (err) {
 		dispatch({
-			type: PROFILE_ERROR,
-			payload: { msg: err.response.statusText, status: err.response.status },
+			type: NO_REPOS,
 		});
 	}
 };
@@ -72,7 +72,7 @@ export const allProfiles = () => async (dispatch) => {
 
 		dispatch({
 			type: GET_PROFILES,
-			payload: res.data,
+			payload: res.data.profiles,
 		});
 	} catch (err) {
 		dispatch({
