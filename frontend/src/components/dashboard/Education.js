@@ -7,34 +7,36 @@ import { connect } from "react-redux";
 import { deleteEducation } from "../../redux/actions/profile";
 
 const Education = ({ education, deleteEducation }) => {
-	const educations = education.map((edu) => (
-		<tr key={edu._id}>
-			<td>{edu.school}</td>
-			<td>{edu.degree}</td>
-			<td>{edu.fieldOfStudy}</td>
-			<td>
-				<Moment format="YYYY/MM/DD">{edu.form}</Moment>
-			</td>
-			<td>
-				<Moment format="YYYY/MM/DD">{edu.to}</Moment>
-			</td>
-			{edu.description ? (
-				<td title={edu.description}>
-					{edu.description.substring(0, 100) + "..."}
+	const educations = education.map((edu) => {
+		const { _id, school, degree, fieldOfStudy, from, to, description } = edu;
+
+		return (
+			<tr key={_id}>
+				<td>{school}</td>
+				<td>{degree}</td>
+				<td>{fieldOfStudy}</td>
+				<td>
+					<Moment format="YYYY/MM/DD">{from}</Moment>
 				</td>
-			) : (
-				<td></td>
-			)}
-			<td>
-				<Button
-					className="btn btn-danger p-2"
-					onClick={() => deleteEducation(edu._id)}
-				>
-					<Trash />
-				</Button>
-			</td>
-		</tr>
-	));
+				<td>
+					<Moment format="YYYY/MM/DD">{to}</Moment>
+				</td>
+				{description ? (
+					<td title={description}>{description.substring(0, 100) + "..."}</td>
+				) : (
+					<td></td>
+				)}
+				<td>
+					<Button
+						className="btn btn-danger p-2"
+						onClick={() => deleteEducation(_id)}
+					>
+						<Trash />
+					</Button>
+				</td>
+			</tr>
+		);
+	});
 
 	return (
 		<>
@@ -64,7 +66,7 @@ const Education = ({ education, deleteEducation }) => {
 };
 
 Education.propTypes = {
-	experience: PropTypes.array.isRequired,
+	education: PropTypes.array.isRequired,
 	deleteEducation: PropTypes.func.isRequired,
 };
 

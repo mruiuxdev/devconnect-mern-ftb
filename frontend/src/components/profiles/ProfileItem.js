@@ -15,7 +15,7 @@ import {
 const ProfileItem = ({
 	profile: {
 		user: { _id, name, avatar, email },
-		company,
+		status,
 		githubUsername,
 		skills,
 		social,
@@ -38,7 +38,7 @@ const ProfileItem = ({
 					<small>
 						<i>
 							<span className="text-secondary d-flex align-items-center">
-								<Code className="me-1" /> {company}
+								<Code className="me-1" /> {status}
 							</span>
 						</i>
 					</small>

@@ -10,4 +10,13 @@
 		width: size(15);
 		height: size(15);
 	}
+	h5 {
+		& + div {
+			& > div {
+				&:not(:last-child) {
+					border-bottom: size(1) solid #ccc;
+				}
+			}
+		}
+	}
 }

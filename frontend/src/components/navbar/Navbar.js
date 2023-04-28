@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
-import { Code, Codesandbox, LogOut } from "react-feather";
+import { Code, Codesandbox, LogOut, MessageSquare } from "react-feather";
 import { logout } from "../../redux/actions/auth";
 
 const Menu = ({ auth: { isAuthenticated, loading }, logout }) => {
@@ -23,6 +23,11 @@ const Menu = ({ auth: { isAuthenticated, loading }, logout }) => {
 			<Nav.Link as="span">
 				<Link to="/profiles" className="text-third text-decoration-none">
 					<Code className="me-2" /> Developers
+				</Link>
+			</Nav.Link>
+			<Nav.Link as="span">
+				<Link to="/posts" className="text-third text-decoration-none">
+					<MessageSquare className="me-2" /> Posts
 				</Link>
 			</Nav.Link>
 			<Nav.Link

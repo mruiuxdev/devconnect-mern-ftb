@@ -7,38 +7,37 @@ import { connect } from "react-redux";
 import { deleteExperience } from "../../redux/actions/profile";
 
 const Experience = ({ experience, deleteExperience }) => {
-	const experiences = experience.map((exp) => (
-		<tr key={exp._id}>
-			<td>{exp.company}</td>
-			<td>{exp.title}</td>
-			{exp.location ? <td>{exp.location}</td> : <td></td>}
-			<td>
-				<Moment format="YYYY/MM/DD">{exp.form}</Moment>
-			</td>
-			<td>
-				{!exp.current ? (
-					<Moment format="YYYY/MM/DD">{exp.to}</Moment>
-				) : (
-					"For Now"
-				)}
-			</td>
-			{exp.description ? (
-				<td title={exp.description}>
-					{exp.description.substring(0, 100) + "..."}
+	const experiences = experience.map((exp) => {
+		const { _id, company, title, from, to, description, current, location } =
+			exp;
+
+		return (
+			<tr key={_id}>
+				<td>{company}</td>
+				<td>{title}</td>
+				{location ? <td>{location}</td> : <td></td>}
+				<td>
+					<Moment format="YYYY/MM/DD">{from}</Moment>
 				</td>
-			) : (
-				<td></td>
-			)}
-			<td>
-				<Button
-					className="btn btn-danger p-2"
-					onClick={() => deleteExperience(exp._id)}
-				>
-					<Trash />
-				</Button>
-			</td>
-		</tr>
-	));
+				<td>
+					{!current ? <Moment format="YYYY/MM/DD">{to}</Moment> : "For Now"}
+				</td>
+				{description ? (
+					<td title={description}>{description.substring(0, 100) + "..."}</td>
+				) : (
+					<td></td>
+				)}
+				<td>
+					<Button
+						className="btn btn-danger p-2"
+						onClick={() => deleteExperience(_id)}
+					>
+						<Trash />
+					</Button>
+				</td>
+			</tr>
+		);
+	});
 
 	return (
 		<>

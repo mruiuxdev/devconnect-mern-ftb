@@ -7,11 +7,11 @@ import { Edit } from "react-feather";
 import { getProfileByUserId } from "../../redux/actions/profile";
 import Shimmer from "../shimmer/Shimmer";
 import ProfileTop from "./ProfileTop";
-import styles from "./Profile.module.scss";
 import ProfileAbout from "./ProfileAbout";
 import ProfileExperience from "./ProfileExperience";
 import ProfileEducation from "./ProfileEducation";
 import ProfileGithub from "./ProfileGithub";
+import styles from "./Profile.module.scss";
 
 const { profilePage, btnEdit } = styles;
 
@@ -47,7 +47,9 @@ const Profile = ({
 						<ProfileAbout profile={profile} />
 						<ProfileExperience experience={profile} />
 						<ProfileEducation education={profile} />
-						<ProfileGithub username={profile.githubUsername} />
+						{profile.githubUsername && (
+							<ProfileGithub username={profile.githubUsername} />
+						)}
 					</>
 				)}
 			</Container>
