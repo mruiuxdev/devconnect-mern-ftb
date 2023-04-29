@@ -1,0 +1,589 @@
+{
+	"info": {
+		"_postman_id": "2b083ff6-2ca6-4398-8446-b8e7aa19a1d5",
+		"name": "DevConnect",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "20284408"
+	},
+	"item": [
+		{
+			"name": "Users & Auth",
+			"item": [
+				{
+					"name": "Get User",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "x-auth-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjQ0OTM4MDM5OWVjMzE3ZTJiMWI5NzAwIn0sImlhdCI6MTY4MjY4NzA3NSwiZXhwIjoxNjgzMjkxODc1fQ.BhZru3HedEjQOjXGiBKwMUqvsrxjnLohHv3ko_es4rM",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{DOMAIN}}/api/auth",
+							"host": [
+								"{{DOMAIN}}"
+							],
+							"path": [
+								"api",
+								"auth"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Register",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Mohamed Ramadan\",\r\n    \"email\": \"mr.uiux.dev@gmail.com\",\r\n    \"password\": \"123456\"\r\n}"
+						},
+						"url": {
+							"raw": "{{DOMAIN}}/api/register",
+							"host": [
+								"{{DOMAIN}}"
+							],
+							"path": [
+								"api",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"mr.uiux.dev@gmail.com\",\r\n    \"password\": \"mr123456\"\r\n}"
+						},
+						"url": {
+							"raw": "{{DOMAIN}}/api/login",
+							"host": [
+								"{{DOMAIN}}"
+							],
+							"path": [
+								"api",
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Profiles",
+			"item": [
+				{
+					"name": "Get Profile",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "x-auth-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjQ0OTAwYTg0Y2NhYTY5MDJkYWM4MDdiIn0sImlhdCI6MTY4MjUyMDgyNiwiZXhwIjoxNjgzMTI1NjI2fQ.l7ZF5d4ccVDxC6St6pyCNZJrKlgO69hO9sK73gv7Gb8",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{DOMAIN}}/api/profile",
+							"host": [
+								"{{DOMAIN}}"
+							],
+							"path": [
+								"api",
+								"profile"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Profiles",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{DOMAIN}}/api/profiles",
+							"host": [
+								"{{DOMAIN}}"
+							],
+							"path": [
+								"api",
+								"profiles"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Profile By User ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{DOMAIN}}/api/profile/6449380399ec317e2b1b9700",
+							"host": [
+								"{{DOMAIN}}"
+							],
+							"path": [
+								"api",
+								"profile",
+								"6449380399ec317e2b1b9700"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Profile Github",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{DOMAIN}}/api/profile/github/mruiuxdev",
+							"host": [
+								"{{DOMAIN}}"
+							],
+							"path": [
+								"api",
+								"profile",
+								"github",
+								"mruiuxdev"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create & Update Profile",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "x-auth-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjQ0OTM4MDM5OWVjMzE3ZTJiMWI5NzAwIn0sImlhdCI6MTY4MjU0NjAyMCwiZXhwIjoxNjgzMTUwODIwfQ.v0-H-jR9v6zYr4YaDqUY1xEv156UjHSMWHhf4aOM2fk",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"company\": \"\",\r\n    \"status\": \"Senior Developer\",\r\n    \"skills\": \"HTML,CSS,JAVASCRIPT, Typescript, React, Next\",\r\n    \"githubUsername\": \"\",\r\n    \"website\": \"\"\r\n}"
+						},
+						"url": {
+							"raw": "{{DOMAIN}}/api/profile",
+							"host": [
+								"{{DOMAIN}}"
+							],
+							"path": [
+								"api",
+								"profile"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Experience",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "x-auth-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjQ0OTFhODlmNWQ3NDU3Yjc3ZWViMmU3In0sImlhdCI6MTY4MjUxODUyMiwiZXhwIjoxNjgzMTIzMzIyfQ.P0ybpPBiGl5MUluxGSkwQ3QHhSEA0E29oEX7Y1FITl0",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"Senior Front End Developer\",\r\n    \"company\": \"Spark Systems\",\r\n    \"location\": \"Cairo\",\r\n    \"from\":\"06-01-2023\",\r\n    \"description\": \"Using Adobe, Figma, ReactJs, NextJs\"\r\n}"
+						},
+						"url": {
+							"raw": "{{DOMAIN}}/api/profile/experience",
+							"host": [
+								"{{DOMAIN}}"
+							],
+							"path": [
+								"api",
+								"profile",
+								"experience"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Education",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "x-auth-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjQ0OTFhODlmNWQ3NDU3Yjc3ZWViMmU3In0sImlhdCI6MTY4MjUxODUyMiwiZXhwIjoxNjgzMTIzMzIyfQ.P0ybpPBiGl5MUluxGSkwQ3QHhSEA0E29oEX7Y1FITl0",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"school\": \"School Name\",\r\n    \"degree\": \"Bachleor\",\r\n    \"fieldOfStudy\": \"Engineersss\",\r\n    \"from\":\"06-01-2011\",\r\n    \"to\": \"06-01-2016\"\r\n}"
+						},
+						"url": {
+							"raw": "{{DOMAIN}}/api/profile/education",
+							"host": [
+								"{{DOMAIN}}"
+							],
+							"path": [
+								"api",
+								"profile",
+								"education"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete User & Profile",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "x-auth-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjQzZjBhMTAxZjU0YWM0YjcxMjRhMTk4In0sImlhdCI6MTY4MTk0OTQ1MywiZXhwIjoxNjgyNTU0MjUzfQ.L7fstCu8ov-O9vGiCcSuDdk_AJhoUQrG8cyRtijrIhA",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{DOMAIN}}/api/profile",
+							"host": [
+								"{{DOMAIN}}"
+							],
+							"path": [
+								"api",
+								"profile"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Experience",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "x-auth-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjQ0MDc2MWFhNTFkNDFmY2VjNmJlMjk0In0sImlhdCI6MTY4MTk1MDc2MiwiZXhwIjoxNjgyNTU1NTYyfQ.hDGp7dpkSvRWH3YarocmkB6UA-kRcpMAdeiFuryhK1I",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{DOMAIN}}/api/profile/experience/644088c534be156b8ace9d37",
+							"host": [
+								"{{DOMAIN}}"
+							],
+							"path": [
+								"api",
+								"profile",
+								"experience",
+								"644088c534be156b8ace9d37"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Education",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "x-auth-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjQ0MDc2MWFhNTFkNDFmY2VjNmJlMjk0In0sImlhdCI6MTY4MTk1MDc2MiwiZXhwIjoxNjgyNTU1NTYyfQ.hDGp7dpkSvRWH3YarocmkB6UA-kRcpMAdeiFuryhK1I",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{DOMAIN}}/api/profile/education/6441149d221d14a66620ed1b",
+							"host": [
+								"{{DOMAIN}}"
+							],
+							"path": [
+								"api",
+								"profile",
+								"education",
+								"6441149d221d14a66620ed1b"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Posts",
+			"item": [
+				{
+					"name": "Get All Posts",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{DOMAIN}}/api/posts",
+							"host": [
+								"{{DOMAIN}}"
+							],
+							"path": [
+								"api",
+								"posts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Post By ID",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-auth-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjQ0YmRiNWZkNGYzZjJlZTNkNmJiMjk1In0sImlhdCI6MTY4Mjc4MzA2NSwiZXhwIjoxNjgzMzg3ODY1fQ.ash78-02KZ49ps2WZc-oDH2jgppnbwRxUb526-D7LGk",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{DOMAIN}}/api/post/644d2c71cac3e4ff67c7f955",
+							"host": [
+								"{{DOMAIN}}"
+							],
+							"path": [
+								"api",
+								"post",
+								"644d2c71cac3e4ff67c7f955"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Post",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "x-auth-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjQ0YmRiNWZkNGYzZjJlZTNkNmJiMjk1In0sImlhdCI6MTY4Mjc2NzQwNywiZXhwIjoxNjgzMzcyMjA3fQ.LQscZtya_ALBj0t98IrLXClgmtyvpuqb76cdQQD6KC0",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"content\": \"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.\"\r\n}"
+						},
+						"url": {
+							"raw": "{{DOMAIN}}/api/post/create",
+							"host": [
+								"{{DOMAIN}}"
+							],
+							"path": [
+								"api",
+								"post",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Comment By Post ID",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "x-auth-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjQ0YmRiNWZkNGYzZjJlZTNkNmJiMjk1In0sImlhdCI6MTY4Mjc4MzA2NSwiZXhwIjoxNjgzMzg3ODY1fQ.ash78-02KZ49ps2WZc-oDH2jgppnbwRxUb526-D7LGk",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"content\": \"Lorem Ipsum is simply dummy.\"\r\n}"
+						},
+						"url": {
+							"raw": "{{DOMAIN}}/api/post/comment/644d2c71cac3e4ff67c7f955",
+							"host": [
+								"{{DOMAIN}}"
+							],
+							"path": [
+								"api",
+								"post",
+								"comment",
+								"644d2c71cac3e4ff67c7f955"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Like Post By ID",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "x-auth-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjQ0YmRiNWZkNGYzZjJlZTNkNmJiMjk1In0sImlhdCI6MTY4Mjc2NzQwNywiZXhwIjoxNjgzMzcyMjA3fQ.LQscZtya_ALBj0t98IrLXClgmtyvpuqb76cdQQD6KC0",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{DOMAIN}}/api/post/like/644c44e34246c0d7c034d55f",
+							"host": [
+								"{{DOMAIN}}"
+							],
+							"path": [
+								"api",
+								"post",
+								"like",
+								"644c44e34246c0d7c034d55f"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Unlike Post By ID",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "x-auth-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjQ0YmRiNWZkNGYzZjJlZTNkNmJiMjk1In0sImlhdCI6MTY4Mjc2NzQwNywiZXhwIjoxNjgzMzcyMjA3fQ.LQscZtya_ALBj0t98IrLXClgmtyvpuqb76cdQQD6KC0",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{DOMAIN}}/api/post/unlike/644c44e34246c0d7c034d55f",
+							"host": [
+								"{{DOMAIN}}"
+							],
+							"path": [
+								"api",
+								"post",
+								"unlike",
+								"644c44e34246c0d7c034d55f"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Post",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "x-auth-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjQ0MDc2MWFhNTFkNDFmY2VjNmJlMjk0In0sImlhdCI6MTY4MTk5NTg3OSwiZXhwIjoxNjgyNjAwNjc5fQ.jvbh7vyH32RBdgVY50OQzuueDF6FfructRs7CvzWbqM",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{DOMAIN}}/api/post/644138f9be349f03bd918016",
+							"host": [
+								"{{DOMAIN}}"
+							],
+							"path": [
+								"api",
+								"post",
+								"644138f9be349f03bd918016"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Comment By Post ID And Comment ID",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "x-auth-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjQ0MDc2MWFhNTFkNDFmY2VjNmJlMjk0In0sImlhdCI6MTY4MTk5NTg3OSwiZXhwIjoxNjgyNjAwNjc5fQ.jvbh7vyH32RBdgVY50OQzuueDF6FfructRs7CvzWbqM",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{DOMAIN}}/api/post/comment/644146a1879866077d3ebf9f/64414b5d939b6aca41a41dfd",
+							"host": [
+								"{{DOMAIN}}"
+							],
+							"path": [
+								"api",
+								"post",
+								"comment",
+								"644146a1879866077d3ebf9f",
+								"64414b5d939b6aca41a41dfd"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
