@@ -4,58 +4,58 @@ const { validationResult } = require("express-validator");
 const User = require("../models/userModel.js");
 
 exports.userByToken = async (req, res) => {
-	try {
-		const user = await User.findById(req.user.id)
-			.select("-password")
-			.select("-__v");
+  try {
+    const user = await User.findById(req.user.id)
+      .select("-password")
+      .select("-__v");
 
-		res.json({ user });
-	} catch (err) {
-		console.error(err.message);
-		res.status(500).send("Server Error");
-	}
+    res.json({ user });
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send("Server Error");
+  }
 };
 
 exports.login = async (req, res) => {
-	const errors = validationResult(req);
+  const errors = validationResult(req);
 
-	if (!errors.isEmpty())
-		return res.status(400).json({ errors: errors.array() });
+  if (!errors.isEmpty())
+    return res.status(400).json({ errors: errors.array() });
 
-	const { email, password } = req.body;
+  const { email, password } = req.body;
 
-	try {
-		const user = await User.findOne({ email });
+  try {
+    const user = await User.findOne({ email });
 
-		if (!user)
-			return res.status(400).json({ errors: [{ msg: "Invalid Credentials" }] });
+    if (!user)
+      return res.status(400).json({ errors: [{ msg: "Invalid Credentials" }] });
 
-		const isMatch = await bcrypt.compare(password, user.password);
+    const isMatch = await bcrypt.compare(password, user.password);
 
-		if (!isMatch)
-			return res.status(400).json({ errors: [{ msg: "Invalid Credentials" }] });
+    if (!isMatch)
+      return res.status(400).json({ errors: [{ msg: "Invalid Credentials" }] });
 
-		const payload = {
-			user: {
-				id: user.id,
-			},
-		};
+    const payload = {
+      user: {
+        id: user.id,
+      },
+    };
 
-		jwt.sign(
-			payload,
-			process.env.JWT_SECRET,
-			{ expiresIn: process.env.JWT_EXPIRES },
-			(err, token) => {
-				if (err) throw err;
+    jwt.sign(
+      payload,
+      process.env.JWT_SECRET,
+      { expiresIn: process.env.JWT_EXPIRES },
+      (err, token) => {
+        if (err) throw err;
 
-				res.status(200).json({
-					success: true,
-					token,
-				});
-			}
-		);
-	} catch (err) {
-		console.error(err.message);
-		res.status(500).send("Server Error");
-	}
+        res.status(200).json({
+          success: true,
+          token,
+        });
+      }
+    );
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send("Server Error");
+  }
 };

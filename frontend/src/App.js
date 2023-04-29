@@ -22,54 +22,54 @@ import "./App.scss";
 if (localStorage.token) setAuthToken(localStorage.token);
 
 const App = () => {
-	useEffect(() => {
-		store.dispatch(loadUser());
-	}, []);
+    useEffect(() => {
+        store.dispatch(loadUser());
+    }, []);
 
-	return (
-		<>
-			<Provider store={store}>
-				<Menu />
-				<Routes>
-					<Route exact path="/" element={<Header />} />
-					<Route exact path="/login" element={<Login />} />
-					<Route exact path="/register" element={<Register />} />
-					<Route exact path="/profiles" element={<Profiles />} />
-					<Route exact path="/profile/:id" element={<Profile />} />
-					<Route
-						exact
-						path="/dashboard"
-						element={<PrivateRoute component={Dashboard} />}
-					/>
-					<Route
-						exact
-						path="/create-profile"
-						element={<PrivateRoute component={CreateProfile} />}
-					/>
-					<Route
-						exact
-						path="/edit-profile"
-						element={<PrivateRoute component={EditProfile} />}
-					/>
-					<Route
-						exact
-						path="/add-experience"
-						element={<PrivateRoute component={AddExperience} />}
-					/>
-					<Route
-						exact
-						path="/add-education"
-						element={<PrivateRoute component={AddEducation} />}
-					/>
-					<Route
-						exact
-						path="/posts"
-						element={<PrivateRoute component={Posts} />}
-					/>
-				</Routes>
-			</Provider>
-		</>
-	);
+    return (
+        <>
+            <Provider store={store}>
+                <Menu />
+                <Routes>
+                    <Route exact path="/" element={<Header />} />
+                    <Route exact path="/login" element={<Login />} />
+                    <Route exact path="/register" element={<Register />} />
+                    <Route exact path="/profiles" element={<Profiles />} />
+                    <Route exact path="/profile/:id" element={<Profile />} />
+                    <Route
+                        exact
+                        path="/dashboard"
+                        element={<PrivateRoute component={Dashboard} />}
+                    />
+                    <Route
+                        exact
+                        path="/create-profile"
+                        element={<PrivateRoute component={CreateProfile} />}
+                    />
+                    <Route
+                        exact
+                        path="/edit-profile"
+                        element={<PrivateRoute component={EditProfile} />}
+                    />
+                    <Route
+                        exact
+                        path="/add-experience"
+                        element={<PrivateRoute component={AddExperience} />}
+                    />
+                    <Route
+                        exact
+                        path="/add-education"
+                        element={<PrivateRoute component={AddEducation} />}
+                    />
+                    <Route
+                        exact
+                        path="/posts"
+                        element={<PrivateRoute component={Posts} />}
+                    />
+                </Routes>
+            </Provider>
+        </>
+    );
 };
 
 export default App;
