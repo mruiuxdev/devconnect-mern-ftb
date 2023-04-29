@@ -10,8 +10,16 @@ const ProfileExperience = ({ experience: { experience } }) => {
 					<h5 className="fw-bold mb-2 text-primary">Experiences</h5>
 					<div>
 						{experience.map((exp) => {
-							const { _id, title, company, location, from, to, description } =
-								exp;
+							const {
+								_id,
+								title,
+								company,
+								location,
+								from,
+								to,
+								current,
+								description,
+							} = exp;
 
 							return (
 								<div className="py-2" key={_id}>
@@ -29,13 +37,13 @@ const ProfileExperience = ({ experience: { experience } }) => {
 									<div className="fw-bold d-flex align-items-center mb-2">
 										<Calendar className="me-2" />
 										<span>
-											From:{" "}
+											From:
 											<Moment format="YYYY/MM/DD" className="ms-1">
 												{from}
 											</Moment>
 										</span>
 										<span className="ms-1">
-											{!to ? (
+											{!current ? (
 												<>
 													- To: <Moment format="YYYY/MM/DD">{to}</Moment>
 												</>

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import PropTypes from "prop-types";
-import { Link, Navigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { connect } from "react-redux";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
@@ -16,6 +16,8 @@ import CustomAlert from "../alert/CustomAlert";
 const { auth } = styles;
 
 const Login = ({ login, isAuthenticated }) => {
+	const navigate = useNavigate();
+
 	const [formData, setFormData] = useState({
 		email: "",
 		password: "",
@@ -32,7 +34,7 @@ const Login = ({ login, isAuthenticated }) => {
 		login(email, password);
 	};
 
-	if (isAuthenticated) return <Navigate to="/dashboard" />;
+	if (isAuthenticated) navigate(-1);
 
 	return (
 		<div className={`${auth} section d-flex align-items-center`}>

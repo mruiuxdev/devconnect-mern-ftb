@@ -35,14 +35,16 @@ const Profile = ({
 					<>
 						<div className="position-relative p-4 rounded shadow">
 							<ProfileTop profile={profile} />
-							{auth.user._id === profile.user._id && (
-								<Link
-									to="/edit-profile"
-									className={`${btnEdit} ms-3 btn btn-warning rounded-pill text-white p-2`}
-								>
-									<Edit />
-								</Link>
-							)}
+							{auth.isAuthenticated &&
+								auth.loading === false &&
+								auth.user._id === profile.user._id && (
+									<Link
+										to="/edit-profile"
+										className={`${btnEdit} ms-3 btn btn-warning rounded-pill text-white p-2`}
+									>
+										<Edit />
+									</Link>
+								)}
 						</div>
 						<ProfileAbout profile={profile} />
 						<ProfileExperience experience={profile} />
